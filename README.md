@@ -1,8 +1,8 @@
 # Tugas 7 PBP
 
-Nama    : Ratu Nadya Anjania
-Kelas   : PBP F
-NPM     : 2206029752
+Nama    : Ratu Nadya Anjania  
+Kelas   : PBP F  
+NPM     : 2206029752  
 
 ## Jawaban
 
@@ -16,7 +16,7 @@ NPM     : 2206029752
 |------------------------------|-------------------------------------------------------------------------------------------------------------|
 | MyApp                        | _Root widget_ dari aplikasi.                                                                                |
 | MaterialApp                  | Mengatur tema aplikasi.                                                                                     |
-| MyHomePage (_StatelessWidget | Tampilan utama (_home screen_).                                                                             |
+| MyHomePage (_StatelessWidget_) | Tampilan utama (_home screen_).                                                                             |
 | FundraisingCard              | Menampilkan setiap FundraisingItem yang jika ditekan menampilkan Snackbar.                                  |
 | FundraisingItem              | Merepresentasikan item penggalangan dana._                                                                  |
 | Scaffold                     | Mengatur tata letak komponen aplikasi.                                                                      |
@@ -34,12 +34,12 @@ NPM     : 2206029752
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)
 
 - **Membuat sebuah program Flutter baru**
-  - Membuat direktori baru
-  - Membuka terminal di direktori tersebut
+  - Membuat direktori baru.
+  - Membuka terminal di direktori tersebut.
   - Menjalankan command `flutter create don8`.
 
 - **Membuat tiga tombol sederhana**
-  - Membuat kelas `FundraisingCard` dan `FundraisingItem`
+  - Membuat kelas `FundraisingCard` dan `FundraisingItem`.
   - Membuat list item bertipe `FundraisingItem` yang berisi ketiga tombol.
   - Menambahkan properti `color` dan menambahkan parameter tiga warna berbeda pada masing-masing item/tombol.
   - Memanfaatkan `FundraisingCard` untuk menampilkan item-item.
