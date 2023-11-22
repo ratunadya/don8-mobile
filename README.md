@@ -140,3 +140,65 @@ Pada aplikasi Flutter, _clean architecture_ diterapkan dengan melakukan organisa
   - Melakukan impor halaman-halaman yang navigasinya ingin dimasukkan ke menu _drawer_.
   - Memanfaatkan widget `ListView` untuk menampilkan `ListTile` yang berisi menu navigasi secara linear.
   - Memodifikasi atribut onTap() agar dapat melakukan navigasi ke halaman yang ingin dituju dengan memanfaatkan method `Navigator.pushReplacement()`.
+
+  ***
+
+# Tugas 9 PBP
+
+## Jawaban
+
+### Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+Ya, bisa tetapi agak merepotkan. Tidak, membuat model sebelum melakukan pengambilan data `JSON` lebih baik daripada tanpa membuat model terlebih dahulu.
+ 
+### Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+`CookieRequest` digunakan untuk mengelola permintaan (_request_) HTTP yang terkait dengan autentikasi dan session dengan menggunakan dependensi yang diinstal, serta memberikan fungsionalitas autentikasi berbasis cookie untuk aplikasi Flutter kepada backend Django.
+
+### Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.
+-
+
+### Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+-
+ 
+### Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.
+-
+ 
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
+
+- **Memastikan _deployment_ proyek tugas Django kamu telah berjalan dengan baik**
+
+    - Memeriksa _deployment_ pada laman `Actions` Github.
+    - `Re-run all jobs` ketika gagal.
+ 
+- **Membuat halaman login pada proyek tugas Flutter**
+    
+    Pada **Django**,
+    - Buat fungsi login pada `authentication/views.py`.
+    - Menambahkan URL _routing_-nya.
+    - Menambahkan path `auth` ke file `urls.py` aplikasi.
+
+    Pada **Flutter**,
+    - Buat file `login.dart` beserta _widget-widget_ dan fungsi validasinya.
+    - Sesuaikan widget `MaterialApp(...)` menjadi `home: LoginPage()`.
+    
+- **Mengintegrasikan sistem autentikasi Django dengan proyek tugas Flutter**
+    - Setup autentikasi pada Django untuk Flutter.
+    - Install _package_ `provider` dan `pbp_django_auth`.
+    - Modifikasi root widget agar dapat menyediakan `CookieRequest` ke semua _child widgets_.
+
+- **Membuat model kustom sesuai dengan proyek aplikasi Django**
+    - Salin data `JSON` yang didapatkan dari mengakses _endpoint_ `JSON`.
+    - Tempel data `JSON` pada textbox situs web Quicktype yang sudah di-_setup_ _name, source type, dan language_-nya.
+    - Klik `Copy Code`.
+    - Buat _folder_ `models` dan _file_ `item.dart` dan tempel kode yang sudah disalin.
+
+
+- **Membuat halaman yang berisi daftar semua item yang terdapat pada endpoint JSON di Django yang telah kamu deploy**
+    - Buat _file_  `list_item.dart`.
+    - Impor library yang dibutuhkan.
+    - Lakukan fetch data dari Django pada file tersebut.
+    
+- **Membuat halaman detail untuk setiap item yang terdapat pada halaman daftar Item**
+    - Buat file `item_details.dart`
+    - Modifikasi `ListView.builder` di `ItemPage` supaya item dapat di-klik.
+    - Manfaatkan widget `InkWell` untuk membungkus setiap item dalam daftar dan modifikasi agar ketika item diketuk (onTap), item akan menavigasi ke ItemDetailsPage, meneruskan objek Item terkait untuk menampilkan detailnya.
+    - Lakukan impor yang diperlukan.
