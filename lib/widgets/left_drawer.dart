@@ -1,3 +1,4 @@
+import 'package:don8/screens/list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:don8/screens/menu.dart';
 import 'package:don8/screens/fundraising_form.dart';
@@ -60,6 +61,17 @@ class LeftDrawer extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => FundraisingFormPage(),
                   ));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.view_list_outlined),
+            title: const Text('Daftar Penggalangan Dana'),
+            onTap: () {
+                // Route menu ke halaman item
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ItemPage()),
+                );
             },
           ),
         ],
