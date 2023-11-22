@@ -148,19 +148,46 @@ Pada aplikasi Flutter, _clean architecture_ diterapkan dengan melakukan organisa
 ## Jawaban
 
 ### Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
-Ya, bisa tetapi agak merepotkan. Tidak, membuat model sebelum melakukan pengambilan data `JSON` lebih baik daripada tanpa membuat model terlebih dahulu.
+
+- Ya, bisa tetapi tidak direkomendasikan. 
+- Tidak, akan lebih baik jika kita menggunakan data yang sudah di-_parse_ ke model dibandingkan dengan menggunakan raw `JSON`. Penggunaan model akan membuat lebih terstruktur.
  
 ### Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
-`CookieRequest` digunakan untuk mengelola permintaan (_request_) HTTP yang terkait dengan autentikasi dan session dengan menggunakan dependensi yang diinstal, serta memberikan fungsionalitas autentikasi berbasis cookie untuk aplikasi Flutter kepada backend Django.
+
+`CookieRequest` digunakan untuk mengelola permintaan (_request_) HTTP yang terkait dengan autentikasi dan _session_ dengan menggunakan dependensi yang diinstal, serta memberikan fungsionalitas autentikasi berbasis _cookie_ untuk aplikasi Flutter kepada _backend_ Django.
 
 ### Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.
--
+
+- Fetch data dari API _endpoint_.
+- Data yang didapat di-_decode_ menjadi bentuk `JSON`.
+- Data dalam bentuk `JSON` di-_convert_ menjadi bentuk model.
+- Data dalam bentuk model dapat digunakan pada aplikasi Flutter.
 
 ### Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
--
+
+- Aplikasi meminta input _username_ dan _password_. 
+- Dart mengakses suatu URL yang mengarahkan ke Django. 
+- Pada fungsi Django, _request_ dan argumen yang diterima dari Dart akan digunakan untuk proses otentikasi username dan password di Django.
+- Respons akan dikembalika dalam format `JSON` berdasarkan hasil otentikasi. 
+- Jika valid, fungsi Django akan memberikan respons kepada Dart bahwa pengguna dapat _login_.
+- Jika gagal, fungsi Django akan memberikan respons kepada Dart bahwa pengguna gagal _login_.
  
 ### Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.
--
+
+| **Widget**       | **Fungsi**                                                                                   |
+|------------------|----------------------------------------------------------------------------------------------|
+| Container        | Sebagai '_box_' yang menampung _widget_ lain dan mengatur tampilan atau _layout_-nya.        |
+| Column           | Menampilkan children secara vertikal.                                                        |
+| Center           | Mengatur tampilan `ElevatedButton` di tengah-tengah halaman rincian _item_.                  |
+| Text             | Menampilkan teks.                                                                            |
+| Icon             | Menampilkan simbol grafis panah yang merepresentasikan fungsi kembali ke halaman sebelumnya. |
+| AppBar           | Menampilkan judul _item_.                                                                    |
+| Scaffold         | Struktur dasar halaman.                                                                      |
+| MaterialApp      | Berfungsi saat ingin menggunakan _material design_.                                          |
+| ListView.builder | Menampilkan _list of children_ yang dapat di-_scroll_.                                       |
+| SizedBox         | Membuat ruang kosong vertikal di antara teks-teks.                                           |
+| ElevatedButton   | Untuk tombol kembali ke halaman daftar _item_.                                               |
+| Padding          | Menambahkan ruang di sekeliling `Column`.                                                    |
  
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
 
@@ -172,33 +199,32 @@ Ya, bisa tetapi agak merepotkan. Tidak, membuat model sebelum melakukan pengambi
 - **Membuat halaman login pada proyek tugas Flutter**
     
     Pada **Django**,
-    - Buat fungsi login pada `authentication/views.py`.
+    - Buat fungsi _login_ pada `authentication/views.py`.
     - Menambahkan URL _routing_-nya.
-    - Menambahkan path `auth` ke file `urls.py` aplikasi.
+    - Menambahkan _path_ `auth` ke _file_ `urls.py` aplikasi.
 
     Pada **Flutter**,
     - Buat file `login.dart` beserta _widget-widget_ dan fungsi validasinya.
-    - Sesuaikan widget `MaterialApp(...)` menjadi `home: LoginPage()`.
+    - Sesuaikan _widget_ `MaterialApp(...)` menjadi `home: LoginPage()`.
     
 - **Mengintegrasikan sistem autentikasi Django dengan proyek tugas Flutter**
     - Setup autentikasi pada Django untuk Flutter.
     - Install _package_ `provider` dan `pbp_django_auth`.
-    - Modifikasi root widget agar dapat menyediakan `CookieRequest` ke semua _child widgets_.
+    - Modifikasi _root widget_ agar dapat menyediakan `CookieRequest` ke semua _child widgets_.
 
 - **Membuat model kustom sesuai dengan proyek aplikasi Django**
     - Salin data `JSON` yang didapatkan dari mengakses _endpoint_ `JSON`.
-    - Tempel data `JSON` pada textbox situs web Quicktype yang sudah di-_setup_ _name, source type, dan language_-nya.
+    - Tempel data `JSON` pada textbox situs web `Quicktype` yang sudah di-_setup_ _name, source type, dan language_-nya.
     - Klik `Copy Code`.
     - Buat _folder_ `models` dan _file_ `item.dart` dan tempel kode yang sudah disalin.
 
-
 - **Membuat halaman yang berisi daftar semua item yang terdapat pada endpoint JSON di Django yang telah kamu deploy**
     - Buat _file_  `list_item.dart`.
-    - Impor library yang dibutuhkan.
-    - Lakukan fetch data dari Django pada file tersebut.
+    - Impor _library_ yang dibutuhkan.
+    - Lakukan _fetch data_ dari Django pada _file_ tersebut.
     
 - **Membuat halaman detail untuk setiap item yang terdapat pada halaman daftar Item**
-    - Buat file `item_details.dart`
+    - Buat _file_ `item_details.dart`.
     - Modifikasi `ListView.builder` di `ItemPage` supaya item dapat di-klik.
-    - Manfaatkan widget `InkWell` untuk membungkus setiap item dalam daftar dan modifikasi agar ketika item diketuk (onTap), item akan menavigasi ke ItemDetailsPage, meneruskan objek Item terkait untuk menampilkan detailnya.
+    - Manfaatkan _widget_ `InkWell` untuk membungkus setiap _item_ dalam daftar dan modifikasi agar ketika _item_ di-_tap_ (onTap), item akan menavigasi ke halaman rincian _item_, lalu meneruskan objek Item terkait untuk menampilkan detailnya.
     - Lakukan impor yang diperlukan.
